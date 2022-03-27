@@ -11,11 +11,19 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get("/",'HomeController@index');
-Route::get("/test",'HomeController@test');
-Route::get('/test2',"Test\TestController@index");
-Route::get('/page/{slug}',"PageController@show");
-Route::resource('/posts','PostController',['parameters'=>['posts'=>'id']]);
+Route::get("/",'HomeController@index')->name('home');
+Route::get('/create','HomeController@create')->name('posts');
+Route::post('/','HomeController@store')->name('posts.store');
+Route::get("/page/about",'PageController@show')->name('page.about');
+
+Route::get('/register','UserController@create')->name('register.create');
+Route::post('/register','UserController@store')->name('register.store');
+
+Route::get('/login','UserController@loginForm')->name('login.create');
+Route::post('/login','UserController@login')->name('login');
+Route::get('/logout','UserController@logout')->name('logout');
+
+Route::get('/admin','Admin\MainController@index');
 
 Route::fallback(function (){
     //return redirect()->route("home");

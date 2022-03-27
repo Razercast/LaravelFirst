@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function show($slug) {
-        return view("pages.$slug");
+    public function show() {
+        return view("pages.about");
     }
 
 }
